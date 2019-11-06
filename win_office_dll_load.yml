@@ -1,0 +1,28 @@
+title: Windows Office Suspicious Dll Load
+status: experimental
+description: Detects suspicious WMI and Task Scheduler DLL loads from MS Office processes
+author: magnitfan
+references:
+    - https://twitter.com/SBousseaden/status/1161919993652662273
+date: 2019/11/06
+tags:
+    - attack.persistence
+    - attack.defense_evasion
+    - attack.t1122
+logsource:
+    product: windows
+    service: sysmon
+detection:
+    selection:
+        EventID: 7
+        Image:
+            - '*\WINWORD.EXE'
+            - '*\EXCEL.EXE'
+            - '*\POWERPOINT.EXE'
+        ImageLoaded:
+            - '*\wmiutils.dll'
+            - '*\taskschd.dll'
+    condition: selection
+falsepositives:
+    - Unknown
+level: low
