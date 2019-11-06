@@ -20,7 +20,7 @@ detection:
         Image:
             - '*\WINWORD.EXE'
             - '*\EXCEL.EXE'
-            - '*\POWERPOINT.EXE'
+            - '*\POWERPNT.EXE'
         ImageLoaded:
             - '*\wmiutils.dll'
             - '*\taskschd.dll'
