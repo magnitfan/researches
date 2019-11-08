@@ -15,7 +15,7 @@ logsource:
 detection:
     selection:
         EventID: 11
-	User: SYSTEM
+        User: SYSTEM
         Image:
             - 'C:\Windows\system32\wermgr.exe'
         TargetFileName:
@@ -23,7 +23,7 @@ detection:
     filter:
         EventID: 11
         User: SYSTEM
-	Image:
+        Image:
         - 'C:\Windows\system32\wermgr.exe'
     TargetFileName:
         - 'C:\ProgramData\Microsoft\Windows\WER\*'
