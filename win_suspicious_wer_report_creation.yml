@@ -4,7 +4,7 @@ description: Detects suspicious WER Report file creations outside of default fol
 author: magnitfan
 references:
     - https://offsec.almond.consulting/windows-error-reporting-arbitrary-file-move-eop.html
-	- https://twitter.com/SBousseaden/status/1181979090108194816
+    - https://twitter.com/SBousseaden/status/1181979090108194816
 date: 2019/11/08
 tags:
     - attack.privilege_escalation
@@ -15,19 +15,19 @@ logsource:
 detection:
     selection:
         EventID: 11
-		User: SYSTEM
+	User: SYSTEM
         Image:
             - 'C:\Windows\system32\wermgr.exe'
         TargetFileName:
             - '*\Report.wer.tmp'
-	filter:
-		EventID: 11
-		User: SYSTEM
-		Image:
-			- 'C:\Windows\system32\wermgr.exe'
-		TargetFileName:
-			- 'C:\ProgramData\Microsoft\Windows\WER\*'
-			- 'C:\Users\*\AppData\Local\Temp\*'
+    filter:
+        EventID: 11
+        User: SYSTEM
+	Image:
+	    - 'C:\Windows\system32\wermgr.exe'
+	 TargetFileName:
+	     - 'C:\ProgramData\Microsoft\Windows\WER\*'
+	     - 'C:\Users\*\AppData\Local\Temp\*'
     condition: selection and not filter
 falsepositives:
     - Unknown
