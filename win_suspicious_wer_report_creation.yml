@@ -1,0 +1,34 @@
+title: WER Manager arbitrary file move EOP detection (CVE-2019-1315)
+status: experimental
+description: Detects suspicious WER Report file creations outside of default folders (possible CVE-2019-1315 exploitation)
+author: magnitfan
+references:
+    - https://offsec.almond.consulting/windows-error-reporting-arbitrary-file-move-eop.html
+	- https://twitter.com/SBousseaden/status/1181979090108194816
+date: 2019/11/08
+tags:
+    - attack.privilege_escalation
+    - attack.t1068
+logsource:
+    product: windows
+    service: sysmon
+detection:
+    selection:
+        EventID: 11
+		User: SYSTEM
+        Image:
+            - 'C:\Windows\system32\wermgr.exe'
+        TargetFileName:
+            - '*\Report.wer.tmp'
+	filter:
+		EventID: 11
+		User: SYSTEM
+		Image:
+			- 'C:\Windows\system32\wermgr.exe'
+		TargetFileName:
+			- 'C:\ProgramData\Microsoft\Windows\WER\*'
+			- 'C:\Users\*\AppData\Local\Temp\*'
+    condition: selection and not filter
+falsepositives:
+    - Unknown
+level: low
