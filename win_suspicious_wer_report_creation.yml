@@ -24,10 +24,10 @@ detection:
         EventID: 11
         User: SYSTEM
 	Image:
-	    - 'C:\Windows\system32\wermgr.exe'
-	 TargetFileName:
-	     - 'C:\ProgramData\Microsoft\Windows\WER\*'
-	     - 'C:\Users\*\AppData\Local\Temp\*'
+        - 'C:\Windows\system32\wermgr.exe'
+    TargetFileName:
+        - 'C:\ProgramData\Microsoft\Windows\WER\*'
+        - 'C:\Users\*\AppData\Local\Temp\*'
     condition: selection and not filter
 falsepositives:
     - Unknown
