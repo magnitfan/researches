@@ -14,7 +14,7 @@ logsource:
 detection:
     selection:
         TargetFileName:
-		        - '*\\UsageLogs\\wscript.exe.log*'
+	    - '*\\UsageLogs\\wscript.exe.log*'
             - '*\\UsageLogs\\cscript.exe.log*'
             - '*\\UsageLogs\\mshta.exe.log*'
             - '*\\UsageLogs\\wmic.exe.log*'
