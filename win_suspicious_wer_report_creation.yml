@@ -11,7 +11,6 @@ tags:
     - attack.t1068
 logsource:
     product: windows
-    service: sysmon
     category: process_creation
 detection:
     is_system_sysmon:
