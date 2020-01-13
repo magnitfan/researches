@@ -12,23 +12,26 @@ tags:
 logsource:
     product: windows
     service: sysmon
+    category: process_creation
 detection:
+    is_system_sysmon:
+        User:
+            - 'SYSTEM'
+    is_system_windows:
+        User|endswith:
+            - '$'
     selection:
-        EventID: 11
-        User: SYSTEM
         Image:
             - 'C:\Windows\system32\wermgr.exe'
         TargetFileName:
             - '*\Report.wer.tmp'
     filter:
-        EventID: 11
-        User: SYSTEM
         Image:
-        - 'C:\Windows\system32\wermgr.exe'
+            - 'C:\Windows\system32\wermgr.exe'
     TargetFileName:
-        - 'C:\ProgramData\Microsoft\Windows\WER\*'
-        - 'C:\Users\*\AppData\Local\Temp\*'
-    condition: selection and not filter
+            - 'C:\ProgramData\Microsoft\Windows\WER\*'
+            - 'C:\Users\*\AppData\Local\Temp\*'
+    condition: (is_system_sysmon or is_system_windows) and selection and not filter
 falsepositives:
     - Unknown
 level: low
