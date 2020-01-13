@@ -1,0 +1,26 @@
+title: Suspicious CLR User Logs files creation
+status: experimental
+description: Detects creation of CLR User Logs files associated with processes which normally shouldn't use CLR. It indicates possible malicious code execution
+references:
+    - https://twitter.com/SBousseaden/status/1213107301357412352
+    - https://blog.menasec.net/2019/07/interesting-difr-traces-of-net-clr.html
+author: Pavel Zykov
+date: 2020/01/13
+tags:
+    - attack.execution
+logsource:
+    category: file_creation
+    product: windows
+detection:
+    selection:
+        TargetFileName:
+		        - '*\\UsageLogs\\wscript.exe.log*'
+            - '*\\UsageLogs\\cscript.exe.log*'
+            - '*\\UsageLogs\\mshta.exe.log*'
+            - '*\\UsageLogs\\wmic.exe.log*'
+            - '*\\UsageLogs\\svchost.exe.log*'
+            - '*\\UsageLogs\\regsvr32.exe.log*'
+    condition: selection
+falsepositives:
+    - Unlikely
+level: high
