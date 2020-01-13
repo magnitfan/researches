@@ -21,9 +21,14 @@ detection:
             - '*\WINWORD.EXE'
             - '*\EXCEL.EXE'
             - '*\POWERPNT.EXE'
+            - '*\OUTLOOK.EXE'
         ImageLoaded:
             - '*\wmiutils.dll'
             - '*\taskschd.dll'
+            - '*\wbemcomn.dll'
+            - '*\wbemprox.dll'
+            - '*\wbemdisp.dll'
+            - '*\wbemsvc.dll'
     condition: selection
 falsepositives:
     - Unknown
